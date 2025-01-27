@@ -4,11 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <!-- セキュリティ強化: CSP, XSS対策 -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self'; connect-src 'self';">
-    <meta http-equiv="X-Content-Type-Options" content="nosniff">
-    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
-    <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains; preload">
     <title>マイワールド</title>
     <style>
         html, body {
@@ -24,19 +19,6 @@
     </style>
 </head>
 <body>
-    <iframe id="myIframe" sandbox="allow-scripts allow-same-origin" loading="lazy"></iframe>
-
-    <script>
-        // URLをBase64エンコードされた形式で保存
-        const encodedUrl = "aHR0cHM6Ly94LmdkL25meWtz"; // 例: https://x.gd/nfyks
-        // Base64デコード関数
-        function decodeUrl(encodedUrl) {
-            return atob(encodedUrl); // Base64デコード
-        }
-
-        // iframeのsrc属性をデコードしてセット
-        const decodedUrl = decodeUrl(encodedUrl);
-        document.getElementById("myIframe").src = decodedUrl;
-    </script>
+    <iframe src="https://x.gd/nfyks"></iframe>
 </body>
 </html>
