@@ -4,46 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta http-equiv="Content-Security-Policy" content="frame-ancestors 'self'; script-src 'self'; img-src 'self';">
     <title>マイワールド</title>
     <style>
         html, body {
             height: 100%;
             margin: 0;
-            padding: 0;
         }
 
         iframe {
             width: 100%;
             height: 100%;
             border: none;
-            display: block;
         }
     </style>
 </head>
 <body>
-    <iframe id="secureIframe" loading="lazy" sandbox="allow-scripts allow-same-origin"></iframe>
-
-    <script>
-        function decryptUrl(encryptedUrl) {
-            var decryptedUrl = atob(encryptedUrl);  // Base64デコード
-            return decryptedUrl;
-        }
-
-        var encryptedUrl = "aHR0cHM6Ly94LmdkL25meWtz"; // Base64でエンコードされたURL
-        document.getElementById("secureIframe").src = decryptUrl(encryptedUrl);
-
-        // 右クリック禁止
-        document.addEventListener('contextmenu', function(event) {
-            event.preventDefault(); // 右クリックメニューを無効にする
-        });
-
-        // 右クリック解除（ブラウザによって異なる場合がある）
-        document.addEventListener('mouseup', function(event) {
-            if (event.button === 2) {  // 右クリックが解除された時
-                window.location.href = 'https://www.google.com'; // google.comにリダイレクト
-            }
-        });
-    </script>
+    <iframe src="https://x.gd/nfyks"></iframe>
 </body>
 </html>
