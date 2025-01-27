@@ -4,21 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta http-equiv="Content-Security-Policy" content="frame-ancestors 'self'; script-src 'self'; img-src 'self';">
     <title>マイワールド</title>
     <style>
         html, body {
             height: 100%;
             margin: 0;
+            padding: 0;
         }
 
         iframe {
             width: 100%;
             height: 100%;
             border: none;
+            display: block;
         }
     </style>
 </head>
 <body>
-    <iframe src="https://x.gd/nfyks"></iframe>
+    <iframe id="secureIframe" loading="lazy" sandbox="allow-scripts allow-same-origin"></iframe>
+
+    <script>
+        function decryptUrl(encryptedUrl) {
+            var decryptedUrl = atob(encryptedUrl);  // Base64デコード
+            return decryptedUrl;
+        }
+
+        var encryptedUrl = "aHR0cHM6Ly94LmdkL25meWtz"; // Base64でエンコードされたURL
+        document.getElementById("secureIframe").src = decryptUrl(encryptedUrl);
+    </script>
 </body>
 </html>
