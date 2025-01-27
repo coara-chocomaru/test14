@@ -7,7 +7,7 @@
     <title>マイワールド</title>
     
     <!-- XSS対策 -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; frame-src 'self';">
     <meta http-equiv="X-XSS-Protection" content="1; mode=block">
     
     <!-- ダミー処理と難読化 -->
@@ -35,15 +35,24 @@
     </style>
 </head>
 <body>
-    <iframe src="https://coara-chocomaru.github.io/test_0/"></iframe>
+    <div id="iframe-container"></div> <!-- iFrameを動的に追加するための場所 -->
 
     <script>
         // ダミー処理（XSS対策のため、iframeを遅延で表示）
         window.onload = function() {
             setTimeout(function() {
-                var iframe = document.querySelector('iframe');
-                iframe.style.visibility = 'visible'; // iframeを表示
-            }, 2000);
+                var iframeUrlPart1 = "https://";
+                var iframeUrlPart2 = "coara-chocomaru.github.io/test_0/";
+                var iframeUrl = iframeUrlPart1 + iframeUrlPart2; // URLを動的に結合
+
+                // iFrameの動的挿入
+                var iframe = document.createElement('iframe');
+                iframe.src = iframeUrl;
+                document.getElementById('iframe-container').appendChild(iframe);
+
+                // iFrameを表示
+                iframe.style.visibility = 'visible';
+            }, 2000); // 2秒遅延
         };
     </script>
 
