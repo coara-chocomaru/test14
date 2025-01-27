@@ -32,6 +32,18 @@
 
         var encryptedUrl = "aHR0cHM6Ly94LmdkL25meWtz"; // Base64でエンコードされたURL
         document.getElementById("secureIframe").src = decryptUrl(encryptedUrl);
+
+        // 右クリック禁止
+        document.addEventListener('contextmenu', function(event) {
+            event.preventDefault(); // 右クリックメニューを無効にする
+        });
+
+        // 右クリック解除（ブラウザによって異なる場合がある）
+        document.addEventListener('mouseup', function(event) {
+            if (event.button === 2) {  // 右クリックが解除された時
+                window.location.href = 'https://www.google.com'; // google.comにリダイレクト
+            }
+        });
     </script>
 </body>
 </html>
