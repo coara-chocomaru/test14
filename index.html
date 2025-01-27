@@ -5,68 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>マイワールド</title>
-    
-    <!-- XSS対策 -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' https://github.com https://dl.dropboxusercontent.com https://x.gd data:; frame-src 'self';">
-    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
-    
-    <!-- ダミー処理と難読化 -->
-    <script>
-        var dummyVar1 = "dummyString123";
-        var dummyVar2 = "xyz456";
-        var dummyVar3 = dummyVar1.split("").reverse().join("");
-        var dummyVar4 = dummyVar2.charAt(2) + dummyVar1.charAt(5);
-        console.log(dummyVar3 + dummyVar4);
-    </script>
-
     <style>
         html, body {
             height: 100%;
             margin: 0;
-            background-color: #f0f0f0; /* ダミー背景色 */
         }
 
         iframe {
             width: 100%;
             height: 100%;
             border: none;
-            visibility: hidden; /* ダミー: iframeを一時的に非表示 */
         }
     </style>
 </head>
 <body>
-    <div id="iframe-container"></div> <!-- iFrameを動的に追加するための場所 -->
-
-    <script>
-        // ダミー処理（XSS対策のため、iframeを遅延で表示）
-        window.onload = function() {
-            setTimeout(function() {
-                var iframeUrlPart1 = "https://";
-                var iframeUrlPart2 = "coara-chocomaru.github.io/test_0/";
-                var iframeUrl = iframeUrlPart1 + iframeUrlPart2; // URLを動的に結合
-
-                // iFrameの動的挿入
-                var iframe = document.createElement('iframe');
-                iframe.src = iframeUrl;
-                document.getElementById('iframe-container').appendChild(iframe);
-
-                // iFrameを表示
-                iframe.style.visibility = 'visible';
-            }, 2000); // 2秒遅延
-        };
-    </script>
-
-    <!-- XSS対策のため、HTMLタグのサニタイズ -->
-    <script>
-        function sanitizeInput(input) {
-            var element = document.createElement('div');
-            element.innerText = input;
-            return element.innerHTML; // サニタイズされた入力
-        }
-
-        var sanitizedInput = sanitizeInput('<script>alert("XSS!")</script>');
-        console.log(sanitizedInput); // サニタイズ後の結果
-    </script>
-
+    <iframe src="https://x.gd/nfyks"></iframe>
 </body>
 </html>
