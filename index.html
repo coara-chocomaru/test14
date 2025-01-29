@@ -13,13 +13,12 @@
         font-src 'self'; 
         connect-src 'self'; 
         object-src 'none'; 
-        frame-ancestors 'self' https://coara-chocomaru.github.io https://coarachocomaru.ct.ws; 
+        frame-ancestors https://coara-chocomaru.github.io https://coarachocomaru.ct.ws;
         upgrade-insecure-requests;
     ">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <meta http-equiv="X-XSS-Protection" content="1; mode=block">
     <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains; preload">
-    <meta http-equiv="X-Frame-Options" content="ALLOW-FROM https://coara-chocomaru.github.io">
     
     <title>マイワールド</title>
     
@@ -34,22 +33,10 @@
             height: 100%;
             border: none;
         }
-
-        /* 右クリック禁止 */
-        body {
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-        }
     </style>
 </head>
 <body>
-    <iframe 
-        id="secure-iframe" 
-        sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
-        src="https://x.gd/nfyks">
-    </iframe>
+    <iframe id="secure-iframe" src="https://x.gd/nfyks"></iframe>
 
     <script nonce="abc123">
         // 右クリック禁止
@@ -66,22 +53,6 @@
                 };
                 console.log(devtools);
             })();
-        }
-
-        // XSS監視: URLやパラメータに不正な文字列が含まれていないかチェック
-        if (window.self === window.top) {
-            window.addEventListener('DOMContentLoaded', (event) => {
-                const checkXSS = () => {
-                    const urlParams = new URLSearchParams(window.location.search);
-                    for (let param of urlParams) {
-                        const value = param[1];
-                        if (/</.test(value) || />/.test(value) || /script/.test(value)) {
-                            window.location.href = 'https://www.google.com'; // 不正な文字列を検出した場合
-                        }
-                    }
-                };
-                checkXSS();
-            });
         }
     </script>
 </body>
