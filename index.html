@@ -36,20 +36,18 @@
     <iframe id="iframe" sandbox="allow-scripts allow-same-origin"></iframe>
 
     <script>
-        // Base64 でエンコードされた URL のパーツ（細かく分割）
+        // URL を細かく分割
         var urlParts = [
-            'aHR0cHM6Ly9j',
-            'b2FyYS1jaG9j',
-            'b21hcnUuZ2l0',
-            'aHViLmlvL3Rl',
-            'c3RfMC8='
+            'https://coara-',
+            'chocomaru.github.',
+            'io/test_0/'
         ];
 
-        // Base64 エンコードされた URL を結合してデコード
-        var decodedUrl = atob(urlParts.join(''));
+        // URL を結合
+        var fullUrl = urlParts.join('');
 
-        // iframe の src 属性に動的に設定
-        document.getElementById('iframe').src = decodedUrl;
+        // iframe の src に設定
+        document.getElementById('iframe').src = fullUrl;
     </script>
 </body>
 </html>
