@@ -4,21 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; 
-        script-src 'self'; 
+    
+    <meta http-equiv="Content-Security-Policy" content="
+        default-src 'self'; 
+        script-src 'self' 'nonce-abc123'; 
         style-src 'self'; 
         img-src 'self'; 
         font-src 'self'; 
         connect-src 'self'; 
-        frame-src 'self' https://x.gd; 
         object-src 'none'; 
-        upgrade-insecure-requests; 
+        frame-ancestors https://coara-chocomaru.github.io https://coarachocomaru.ct.ws;
+        upgrade-insecure-requests;
     ">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <meta http-equiv="X-XSS-Protection" content="1; mode=block">
     <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains; preload">
-    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+    
     <title>マイワールド</title>
+    
     <style>
         html, body {
             height: 100%;
@@ -33,20 +36,24 @@
     </style>
 </head>
 <body>
-    <iframe id="iframe" sandbox="allow-scripts allow-same-origin"></iframe>
+    <iframe id="secure-iframe" src="https://x.gd/nfyks"></iframe>
 
-    <script>
-        // Base64 でエンコードされた URL のパーツ
-        var urlParts = [
-            'aHR0cHM6Ly9',
-            '4LmdkL25meWtz'
-        ];
+    <script nonce="abc123">
+        // 右クリック禁止
+        document.addEventListener('contextmenu', function(event) {
+            event.preventDefault();
+        });
 
-        // Base64 エンコードされた URL を結合
-        var decodedUrl = atob(urlParts.join(''));
-
-        // iframe の src 属性に動的に設定
-        document.getElementById('iframe').src = decodedUrl;
+        // デベロッパーツール対策 (iframe では実行しない)
+        if (window.self === window.top) { 
+            (function() {
+                var devtools = /./;
+                devtools.toString = function() {
+                    window.location.href = 'https://www.google.com'; // もし開いたらgoogleに飛ばす
+                };
+                console.log(devtools);
+            })();
+        }
     </script>
 </body>
 </html>
