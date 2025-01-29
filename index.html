@@ -4,6 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    <meta http-equiv="Content-Security-Policy" content="
+        default-src 'self'; 
+        script-src 'self' 'nonce-abc123'; 
+        style-src 'self'; 
+        img-src 'self'; 
+        font-src 'self'; 
+        connect-src 'self'; 
+        object-src 'none'; 
+        frame-ancestors 'self' https://coarachocomaru.ct.ws;
+        upgrade-insecure-requests;
+    ">
+    <meta http-equiv="X-Frame-Options" content="ALLOW-FROM https://coarachocomaru.ct.ws">
+    
     <title>マイワールド</title>
     <style>
         html, body {
@@ -19,6 +33,16 @@
     </style>
 </head>
 <body>
-    <iframe src="https://x.gd/nfyks"></iframe>
+
+    <!-- 許可されたGitHubページを埋め込む -->
+    <iframe src="https://coara-chocomaru.github.io"></iframe>
+
+    <script nonce="abc123">
+        // 許可されたドメイン (coarachocomaru.ct.ws) 以外で埋め込まれた場合、Googleにリダイレクト
+        if (window.self !== window.top && !document.referrer.includes("coarachocomaru.ct.ws")) {
+            window.location.href = "https://www.google.com";
+        }
+    </script>
+
 </body>
 </html>
