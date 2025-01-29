@@ -44,16 +44,7 @@
             event.preventDefault();
         });
 
-        // デベロッパーツール対策 (iframe では実行しない)
-        if (window.self === window.top) { 
-            (function() {
-                var devtools = /./;
-                devtools.toString = function() {
-                    window.location.href = 'https://www.google.com'; // もし開いたらgoogleに飛ばす
-                };
-                console.log(devtools);
-            })();
-        }
+        // デベロッパーツール対策と外部ドメイン監視のリダイレクトを一時的に無効化
     </script>
 </body>
 </html>
