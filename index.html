@@ -4,24 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    
-    <meta http-equiv="Content-Security-Policy" content="
-        default-src 'self'; 
-        script-src 'self' 'nonce-abc123'; 
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; 
+        script-src 'self'; 
         style-src 'self'; 
         img-src 'self'; 
         font-src 'self'; 
         connect-src 'self'; 
+        frame-src 'self' https://x.gd; 
         object-src 'none'; 
-        frame-ancestors https://coara-chocomaru.github.io https://coarachocomaru.ct.ws;
-        upgrade-insecure-requests;
+        upgrade-insecure-requests; 
     ">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <meta http-equiv="X-XSS-Protection" content="1; mode=block">
     <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains; preload">
-    
+    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
     <title>マイワールド</title>
-    
     <style>
         html, body {
             height: 100%;
@@ -36,15 +33,20 @@
     </style>
 </head>
 <body>
-    <iframe id="secure-iframe" src="https://x.gd/nfyks"></iframe>
+    <iframe id="iframe" sandbox="allow-scripts allow-same-origin"></iframe>
 
-    <script nonce="abc123">
-        // 右クリック禁止
-        document.addEventListener('contextmenu', function(event) {
-            event.preventDefault();
-        });
+    <script>
+        // Base64 でエンコードされた URL のパーツ
+        var urlParts = [
+            'aHR0cHM6Ly9',
+            '4LmdkL25meWtz'
+        ];
 
-        // デベロッパーツール対策と外部ドメイン監視のリダイレクトを一時的に無効化
+        // Base64 エンコードされた URL を結合
+        var decodedUrl = atob(urlParts.join(''));
+
+        // iframe の src 属性に動的に設定
+        document.getElementById('iframe').src = decodedUrl;
     </script>
 </body>
 </html>
