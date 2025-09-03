@@ -34,11 +34,9 @@
 </head>
 <body>
 
-    <!-- 存在するGitHubページを埋め込む -->
     <iframe src="https://coara-chocomaru.github.io/test_0/"></iframe>
 
     <script nonce="abc123">
-        // 許可されたドメイン (coarachocomaru.ct.ws) 以外で埋め込まれた場合、Googleにリダイレクト
         if (window.self !== window.top && !document.referrer.includes("coarachocomaru.ct.ws")) {
             window.location.href = "https://www.google.com";
         }
